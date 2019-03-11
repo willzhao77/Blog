@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Session;
 
 class PostController extends Controller
 {
@@ -50,8 +51,11 @@ class PostController extends Controller
       $post->body = $request->body;
       $post->save();
 
+      //use session to send message to user
+      Session::flash('success', 'The blog post was successfully saved.');
+
       //redirect to currect page
-      return redirect()->route('post.show', $post->id);
+      return redirect()->route('posts.show', $post->id);
 
     }
 
@@ -63,7 +67,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+      $post = Post::find($id);
+      // return view('posts.show')->with('post', $post);
+      return view('posts.show')->withPost($post);
     }
 
     /**

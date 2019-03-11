@@ -8,7 +8,7 @@
       <h1>Create new Post</h1>
       <hr>
 
-      <form class="" action="{{ route('post.store') }}" method="post">
+      <form class="" action="{{ route('posts.store') }}" method="post">
         {!! csrf_field() !!}
         <div class="form-group">
           <label for="" class="control-label">Title</label>
