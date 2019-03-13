@@ -34,6 +34,10 @@
           @endforeach
         </tbody>
       </table>
+      <div class="">
+
+          {{ $posts->links() }}
+      </div>
     </div>
   </div>
 
