@@ -1,11 +1,19 @@
 @extends('main')
-@section('title', '|View Post')
+
+@section('title', '| Edit Blog Post')
 
 @section('content')
+<form class="" action="{{ url('posts/'.$post->id) }}" method="post">
+  {{ method_field('PATCH') }}
+  {!! csrf_field() !!}
   <div class="row">
     <div class="col-md-8">
-      <h1>{{ $post->title }}</h1>
-      <p class="lead">{{ $post->body }}</p>
+      <div class="">
+        <label for="">Post Title:</label><input type="text" name="title" class="form-control" value="{{ $post->title }}">
+      </div>
+      <div class="">
+        <label for="">Body</label><textarea name="body" class="form-control">{{ $post->body }}</textarea>
+      </div>
     </div>
 
     <div class="col-md-4">
@@ -22,21 +30,19 @@
         <hr>
         <div class="row">
           <div class="col-sm-6">
-            <a href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-primary btn-block">Edit</a>
+            <a href="{{ url('posts/'.$post->id) }}" class="btn btn-danger btn-block">Cancel</a>
           </div>
           <div class="col-sm-6">
-            <form action="{{ url('posts/'.$post->id) }}" method="POST" style="display: inline;">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-                <button type="submit" class="btn btn-danger btn-block">Delete</button>
-            </form>
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</form>
 
 
 
 
-@endsection
+
+@stop
