@@ -12,6 +12,9 @@
         <label for="">Post Title:</label><input type="text" name="title" class="form-control" value="{{ $post->title }}">
       </div>
       <div class="">
+        <label for="">Slug:</label><input type="text" name="slug" class="form-control" value="{{ $post->slug }}">
+      </div>
+      <div class="">
         <label for="">Body</label><textarea name="body" class="form-control">{{ $post->body }}</textarea>
       </div>
     </div>

@@ -11,6 +11,10 @@
     <div class="col-md-4">
       <div class="card card-body bg-light">
         <dl class="row">
+          <dt class="col-sm-5">Url Slug</dt>
+          <dd class="col-sm-7"><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></dd>
+        </dl>
+        <dl class="row">
           <dt class="col-sm-5">Create At:</dt>
           <dd class="col-sm-7">{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
         </dl>
@@ -30,6 +34,9 @@
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-danger btn-block">Delete</button>
             </form>
+          </div>
+          <div class="col-sm-12">
+            <a href="{{ route('posts.index') }}" class="btn btn-primary btn-block btn-h1-spacing">See All Posts</a>
           </div>
         </div>
       </div>
