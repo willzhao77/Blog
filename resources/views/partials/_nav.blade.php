@@ -23,17 +23,30 @@
     </ul>
 
     <ul class="navbar-nav d-flex justify-content-end">
+      @if(Auth::check())
+
       <li class="nav-item dropdown mr-sm-2">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Account
+          Hello {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
-          <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">logout</a>
+          <a class="dropdown-item" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
         </div>
       </li>
+      @else
+
+      <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+      @endif
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
