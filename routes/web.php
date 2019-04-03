@@ -30,6 +30,7 @@ Route::get('/', 'PageController@getIndex');
 Route::get('/about', 'PageController@getAbout');
 Route::get('/contact', 'PageController@getContact');
 Route::resource('/posts', 'PostController');
+Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 Auth::routes();
 
