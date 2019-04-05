@@ -17,7 +17,7 @@
           @foreach ($tags as $tag)
           <tr>
             <th>{{ $tag->id }}</th>
-            <td>{{ $tag->name }}</td>
+            <td><a href="{{ route('tags.show', $tag->id) }}">{{ $tag->name }}</a></td>
           </tr>
           @endforeach
         </tbody>
@@ -31,7 +31,7 @@
           <h2>New Tag</h2>
           <label for="">Name:</label>
           <input type="text" name="name" value="" class="form-control">
-          <button type="submit" class="btn btn-success btn-block">Submit</button>
+          <button type="submit" class="btn btn-success btn-block">Create new Tag</button>
         </form>
       </div>
     </div>
