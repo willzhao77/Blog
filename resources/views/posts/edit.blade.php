@@ -1,6 +1,9 @@
 @extends('main')
 
 @section('title', '| Edit Blog Post')
+@section('stylesheets')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endsection
 
 @section('content')
 <form class="" action="{{ url('posts/'.$post->id) }}" method="post">
@@ -13,6 +16,32 @@
       </div>
       <div class="">
         <label for="">Slug:</label><input type="text" name="slug" class="form-control" value="{{ $post->slug }}">
+      </div>
+      <div class="">
+        <label for="">Category:</label>
+        <select class="form-control" name="category_id">
+          @foreach ($cats as $category)
+            @if ($category->name == $post->category->name)
+              <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+            @else
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endif
+          @endforeach
+        </select>
+
+        <div class="form-group">
+          <label for="" class="control-label">Tags:</label>
+          <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+            @foreach ($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+            @endforeach
+          </select>
+        </div>
+
+
+
+
+
       </div>
       <div class="">
         <label for="">Body</label><textarea name="body" class="form-control">{{ $post->body }}</textarea>
@@ -43,9 +72,22 @@
     </div>
   </div>
 </form>
-
-
-
-
-
 @stop
+
+
+
+
+@section('script')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <!-- <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script> -->
+  <script>
+
+  // In your Javascript (external .js resource or <script> tag)
+  $(document).ready(function() {
+      $('.select2-multi').select2();
+      $('.select2-multi').select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+
+  });
+
+  </script>
+@endsection

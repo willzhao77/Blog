@@ -2,6 +2,12 @@
 
 @section('title', '| Creat New Post')
 
+@section('stylesheets')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endsection
+
+
+
 @section('content')
   <div class="row">
     <div class="col-md-8 offset-md-2">
@@ -18,20 +24,49 @@
           <label for="" class="control-label">Slug</label>
           <input type="text" class="form-control" id="title" name='slug'>
         </div>
-        
+
+        <div class="form-group">
+          <label for="" class="control-label">Category:</label>
+          <select class="form-control" name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="" class="control-label">Tags:</label>
+          <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+            @foreach ($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+            @endforeach
+          </select>
+        </div>
+
+
         <div class="form-group">
           <label for="" class="control-label">Post Body:</label>
           <textarea name="body" class="form-control"></textarea>
         </div>
         <div class="form-group">
           <input type="submit" name="button" id="button" value="submit" class="btn btn-success btn-lg">
-
         </div>
       </form>
-
-
-
-
     </div>
   </div>
+@endsection
+
+
+
+@section('script')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <!-- <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script> -->
+  <script>
+
+  // In your Javascript (external .js resource or <script> tag)
+  $(document).ready(function() {
+      $('.select2-multi').select2();
+  });
+
+  </script>
 @endsection

@@ -6,13 +6,22 @@
     <div class="col-md-8">
       <h1>{{ $post->title }}</h1>
       <p class="lead">{{ $post->body }}</p>
+      <hr>
+      <div class="">
+        @foreach ($post->tags as $tag)
+          <span class="badge badge-secondary">{{ $tag->name }}</span>
+        @endforeach
+      </div>
     </div>
-
     <div class="col-md-4">
       <div class="card card-body bg-light">
         <dl class="row">
           <dt class="col-sm-5">Url Slug</dt>
           <dd class="col-sm-7"><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-sm-5">Category:</dt>
+          <p>{{ $post->category->name }}</p>
         </dl>
         <dl class="row">
           <dt class="col-sm-5">Create At:</dt>

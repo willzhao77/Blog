@@ -10,5 +10,6 @@
       </div>
       <!--  end of container-->
       @include('partials._javascript')
+      @yield('script')
   </body>
 </html>
