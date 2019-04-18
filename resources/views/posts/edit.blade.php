@@ -3,10 +3,18 @@
 @section('title', '| Edit Blog Post')
 @section('stylesheets')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+
+    <script>
+      tinymce.init({
+        selector:'textarea',
+        menubar: false
+      });
+    </script>
 @endsection
 
 @section('content')
-<form class="" action="{{ url('posts/'.$post->id) }}" method="post">
+<form class="" action="{{ url('posts/'.$post->id) }}" method="post" enctype="multipart/form-data">
   {{ method_field('PATCH') }}
   {!! csrf_field() !!}
   <div class="row">
@@ -38,7 +46,10 @@
           </select>
         </div>
 
-
+        <div class="form-group">
+          <label for="" class="control-label">featured_image:</label>
+          <input class="form-control" type="file" name="featured_image">
+        </div>
 
 
 

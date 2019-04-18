@@ -4,8 +4,9 @@
 @section('content')
   <div class="row">
     <div class="col-md-8">
+      <img src="{{ asset('img/' . $post->image) }}" alt="">
       <h1>{{ $post->title }}</h1>
-      <p class="lead">{{ $post->body }}</p>
+      <p class="lead">{!! $post->body !!}</p>
       <hr>
       <div class="">
         @foreach ($post->tags as $tag)
