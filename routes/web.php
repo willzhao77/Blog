@@ -27,10 +27,11 @@
 Route::get('blog/{slug}', 'BlogController@getSingle')->where('slug', '[\w\d\-\_]+')->name('blog.single');
 Route::get('blog', 'BlogController@getIndex')->name('blog.index');
 Route::get('/', 'PageController@getIndex');
-Route::get('/about', 'PageController@getAbout');
-Route::get('/contact', 'PageController@getContact');
-Route::post('/contact', 'PageController@postContact');
-Route::resource('/posts', 'PostController');
+Route::get('/home', 'PageController@getIndex');
+Route::get('about', 'PageController@getAbout');
+Route::get('contact', 'PageController@getContact');
+Route::post('contact', 'PageController@postContact');
+Route::resource('posts', 'PostController');
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Route::resource('tags', 'TagController', ['except' => ['create']]);
 Route::post('comments/{post_id}', 'CommentsController@store')->name('comments.store');
